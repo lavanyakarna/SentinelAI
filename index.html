@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SentinelAI | Behavioral Anomaly Detection</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar-left">
+      <div class="brand">
+        <span class="brand-icon"><i data-lucide="shield-half"></i></span>
+        <span class="brand-name">Sentinel<span class="brand-accent">AI</span></span>
+      </div>
+    </div>
+
+    <div class="topbar-right">
+      <div class="datetime" id="datetime">
+        <span id="current-date">--</span>
+        <span class="datetime-divider">|</span>
+        <span id="current-time">--</span>
+      </div>
+
+      <button class="icon-btn" id="notification-btn" aria-label="Notifications">
+        <i data-lucide="bell"></i>
+        <span class="badge-dot" id="notification-dot"></span>
+      </button>
+
+      <div class="notification-dropdown" id="notification-dropdown"></div>
+
+      <button class="icon-btn" id="settings-btn" aria-label="Settings">
+        <i data-lucide="settings"></i>
+      </button>
+
+      <div class="profile-avatar" id="profile-avatar">
+        <span>SA</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-shell">
+
+    <aside class="sidebar" id="sidebar">
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link active" data-page="dashboard">
+          <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="threat-monitor">
+          <i data-lucide="radar"></i><span>Threat Monitor</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="analytics">
+          <i data-lucide="bar-chart-3"></i><span>Analytics</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="users">
+          <i data-lucide="users"></i><span>Users</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="map">
+          <i data-lucide="map"></i><span>Map</span>
+        </a>
+        <a href="#" class="sidebar-link" data-page="settings">
+          <i data-lucide="settings-2"></i><span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="system-status">
+          <span class="status-dot"></span>
+          <span>System Online</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="main-content">
+
+      <div class="page-header">
+        <div>
+          <h1>Security Overview</h1>
+          <p class="page-subtitle">Real-time behavioral anomaly detection</p>
+        </div>
+      </div>
+
+      <!-- DASHBOARD VIEW -->
+      <div class="page-view active" id="page-dashboard">
+        <section class="cards-grid" id="cards-grid"></section>
+        <section class="dashboard-grid">
+          <div class="panel" id="risk-meter-panel"></div>
+          <div class="panel" id="live-feed-panel"></div>
+          <div class="panel" id="explain-panel"></div>
+          <div class="panel" id="simulation-panel"></div>
+        </section>
+      </div>
+
+      <!-- THREAT MONITOR VIEW -->
+      <div class="page-view" id="page-threat-monitor">
+        <div class="panel" id="threat-monitor-panel" style="grid-column: span 12;"></div>
+      </div>
+
+      <!-- ANALYTICS VIEW -->
+      <div class="page-view" id="page-analytics">
+        <div class="panel" id="charts-panel" style="grid-column: span 12;"></div>
+      </div>
+
+      <!-- USERS VIEW -->
+      <div class="page-view" id="page-users">
+        <div class="panel" id="users-table-panel" style="grid-column: span 12;"></div>
+      </div>
+
+      <!-- MAP VIEW -->
+      <div class="page-view" id="page-map">
+        <div class="panel" id="map-panel-full" style="grid-column: span 12;"></div>
+      </div>
+
+      <!-- SETTINGS VIEW -->
+      <div class="page-view" id="page-settings">
+        <div class="panel" id="settings-panel" style="grid-column: span 12;"></div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="threat-modal-overlay">
+    <div class="modal" id="threat-modal"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
